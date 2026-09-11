@@ -523,13 +523,97 @@
             overflow: hidden;
         }
 
-      .project-image img {
+    /* ===== PROJECT IMAGE SLIDER ===== */
+.project-slider {
+    position: relative;
     width: 100%;
-    height: 100%;
-    object-fit: contain;
+    height: 280px;
     background: #0f172a;
-    padding: 10px;
-    transition: transform 0.4s ease;
+    overflow: hidden;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.slider-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease;
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Slider Buttons */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 240, 255, 0.2);
+    border: 1px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+}
+
+.slider-btn:hover {
+    background: var(--neon-cyan);
+    color: #000;
+}
+
+.slider-btn.prev {
+    left: 10px;
+}
+
+.slider-btn.next {
+    right: 10px;
+}
+
+/* Slider Dots */
+.slider-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.slider-dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider-dots span.active {
+    background: var(--neon-cyan);
+    width: 25px;
+    border-radius: 10px;
 }
 
         .project-card:hover .project-image img {
@@ -814,12 +898,23 @@
             
             <!-- Project 1: SkillSync-AI -->
             <div class="project-card reveal">
-                <div class="project-image">
-    <img src="https://i.ibb.co/DHFpGHgJ/image.png" alt="SkillSync-AI">
-    <img src="https://i.ibb.co/cSLFBG9x/image.png" alt="SkillSync-AI">
-    <img src="https://i.ibb.co/gbb31qRL/image.png" alt="SkillSync-AI">
-     <img src="https://i.ibb.co/QvFGXRjt/image.png" alt="SkillSync-AI">
-     <img src="https://i.ibb.co/nqhWbpxt/image.png" alt="SkillSync-AI">
+             <div class="project-slider" id="slider1">
+    <div class="slider-track" id="track1">
+        <div class="slide"><img src="https://i.ibb.co/DHFpGHgJ/image.png" alt="SkillSync-1"></div>
+        <div class="slide"><img src="https://i.ibb.co/cSLFBG9x/image.png" alt="SkillSync-2"></div>
+        <div class="slide"><img src="https://i.ibb.co/gbb31qRL/image.png" alt="SkillSync-3"></div>
+        <div class="slide"><img src="https://i.ibb.co/QvFGXRjt/image.png" alt="SkillSync-4"></div>
+        <div class="slide"><img src="https://i.ibb.co/nqhWbpxt/image.png" alt="SkillSync-5"></div>
+    </div>
+    <button class="slider-btn prev" onclick="moveSlide('slider1', 'track1', -1)">❮</button>
+    <button class="slider-btn next" onclick="moveSlide('slider1', 'track1', 1)">❯</button>
+    <div class="slider-dots" id="dots1">
+        <span class="active" onclick="goToSlide('slider1', 'track1', 0)"></span>
+        <span onclick="goToSlide('slider1', 'track1', 1)"></span>
+        <span onclick="goToSlide('slider1', 'track1', 2)"></span>
+        <span onclick="goToSlide('slider1', 'track1', 3)"></span>
+        <span onclick="goToSlide('slider1', 'track1', 4)"></span>
+    </div>
 </div>
                 <div class="project-info">
                     <h3>SkillSync-AI</h3>
@@ -835,9 +930,17 @@
 
             <!-- Project 2: Responsive Static Website -->
             <div class="project-card reveal">
-               <div class="project-image">
-    <img src="https://i.ibb.co/8g2pppwd/image.png" alt="Responsive Website">
-  <img src="https://i.ibb.co/mWL8QPr/image.png" alt="rsw2" border="0" /></a>
+               <div class="project-slider" id="slider2">
+    <div class="slider-track" id="track2">
+        <div class="slide"><img src="YAHAN-PEHLA-LINK" alt="Website-1"></div>
+        <div class="slide"><img src="YAHAN-DUSRA-LINK" alt="Website-2"></div>
+    </div>
+    <button class="slider-btn prev" onclick="moveSlide('slider2', 'track2', -1)">❮</button>
+    <button class="slider-btn next" onclick="moveSlide('slider2', 'track2', 1)">❯</button>
+    <div class="slider-dots" id="dots2">
+        <span class="active" onclick="goToSlide('slider2', 'track2', 0)"></span>
+        <span onclick="goToSlide('slider2', 'track2', 1)"></span>
+    </div>
 </div>
                 <div class="project-info">
                     <h3>Responsive Static Website</h3>
@@ -907,6 +1010,43 @@
                 }
             });
         });
+
+        // ===== IMAGE SLIDER =====
+const sliderStates = {};
+
+function moveSlide(sliderId, trackId, direction) {
+    const track = document.getElementById(trackId);
+    const totalSlides = track.children.length;
+    
+    if (!sliderStates[trackId]) sliderStates[trackId] = 0;
+    
+    sliderStates[trackId] += direction;
+    
+    if (sliderStates[trackId] < 0) sliderStates[trackId] = totalSlides - 1;
+    if (sliderStates[trackId] >= totalSlides) sliderStates[trackId] = 0;
+    
+    updateSlider(trackId, sliderStates[trackId], totalSlides);
+}
+
+function goToSlide(sliderId, trackId, index) {
+    sliderStates[trackId] = index;
+    const track = document.getElementById(trackId);
+    const totalSlides = track.children.length;
+    updateSlider(trackId, index, totalSlides);
+}
+
+function updateSlider(trackId, index, total) {
+    const track = document.getElementById(trackId);
+    track.style.transform = `translateX(-${index * 100}%)`;
+    
+    // Update dots
+    const dotsContainer = trackId.replace('track', 'dots');
+    const dots = document.getElementById(dotsContainer).children;
+    for (let i = 0; i < dots.length; i++) {
+        dots[i].classList.remove('active');
+    }
+    if (dots[index]) dots[index].classList.add('active');
+}
     </script>
     
 </body>
