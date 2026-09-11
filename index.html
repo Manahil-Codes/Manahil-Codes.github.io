@@ -23,6 +23,7 @@
             --bg-card: #111827;
             --neon-cyan: #00f0ff;
             --neon-purple: #a855f7;
+            --neon-pink: #ec4899;
             --text-main: #e2e8f0;
             --text-muted: #94a3b8;
             --glass-bg: rgba(17, 24, 39, 0.7);
@@ -47,7 +48,7 @@
             color: inherit;
         }
 
-        /* ===== ANIMATED BACKGROUND ===== */
+        /* ===== ANIMATED BACKGROUND (Aur Impressive) ===== */
         .bg-glow {
             position: fixed;
             top: 0;
@@ -56,36 +57,40 @@
             height: 100%;
             z-index: -1;
             overflow: hidden;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 240, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.05) 0%, transparent 60%);
         }
 
         .bg-glow::before,
         .bg-glow::after {
             content: '';
             position: absolute;
-            width: 500px;
-            height: 500px;
+            width: 600px;
+            height: 600px;
             border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.15;
-            animation: float 8s ease-in-out infinite;
+            filter: blur(150px);
+            opacity: 0.12;
+            animation: float 10s ease-in-out infinite;
         }
 
         .bg-glow::before {
             background: var(--neon-cyan);
-            top: -150px;
-            left: -150px;
+            top: -200px;
+            left: -200px;
         }
 
         .bg-glow::after {
             background: var(--neon-purple);
-            bottom: -150px;
-            right: -150px;
-            animation-delay: 4s;
+            bottom: -200px;
+            right: -200px;
+            animation-delay: 5s;
         }
 
         @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(30px, -30px); }
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(40px, -40px) scale(1.1); }
         }
 
         /* ===== NAVIGATION ===== */
@@ -192,11 +197,12 @@
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 15px;
+            color: #ffffff;
             animation: fadeInUp 1s ease;
         }
 
         .hero-name span {
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -228,17 +234,17 @@
 
         .btn-primary {
             background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
-            color: #000;
+            color: #ffffff;
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.4);
         }
 
         .btn-outline {
             background: transparent;
-            color: #fff;
+            color: #ffffff;
             border: 2px solid var(--neon-cyan);
         }
 
@@ -264,6 +270,7 @@
             gap: 60px;
             max-width: 1100px;
             margin: 0 auto;
+            align-items: start;
         }
 
         .about-text p {
@@ -288,6 +295,16 @@
             color: var(--neon-cyan);
             font-size: 1.2rem;
             width: 25px;
+        }
+
+        /* Email aur Phone ab clickable link hain */
+        .contact-item a {
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--neon-cyan);
         }
 
         .social-links {
@@ -316,42 +333,26 @@
             transform: translateY(-5px);
         }
 
-        /* ===== SKILLS SECTION ===== */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            margin: 0 auto 80px;
+        /* Education Heading Fix - Ab sahi alignment mein */
+        .education-heading {
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+            display: inline-block;
+            position: relative;
+            padding-bottom: 10px;
         }
 
-        .skill-card {
-            background: var(--bg-card);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 30px 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: default;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--neon-cyan);
-            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.1);
-        }
-
-        .skill-card i {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+        .education-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
             background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .skill-card h4 {
-            font-size: 1rem;
-            font-weight: 600;
+            border-radius: 3px;
         }
 
         /* ===== TIMELINE ===== */
@@ -403,6 +404,7 @@
         .timeline-item h4 {
             font-size: 1.2rem;
             margin-bottom: 5px;
+            color: #ffffff;
         }
 
         .timeline-item .date {
@@ -415,6 +417,70 @@
         .timeline-item p {
             color: var(--text-muted);
             font-size: 0.95rem;
+        }
+
+        /* ===== SKILLS SECTION ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 30px 15px;
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 15px 40px rgba(0, 240, 255, 0.15);
+        }
+
+        /* Icons ab bohat clear aur bade hain */
+        .skill-card i {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            display: block;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover i {
+            transform: scale(1.15);
+        }
+
+        .skill-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
         }
 
         /* ===== PROJECTS SECTION ===== */
@@ -441,7 +507,7 @@
         .project-card:hover {
             transform: translateY(-10px);
             border-color: var(--neon-purple);
-            box-shadow: 0 20px 40px rgba(168, 85, 247, 0.15);
+            box-shadow: 0 20px 40px rgba(168, 85, 247, 0.2);
         }
 
         .project-image {
@@ -648,13 +714,15 @@
                 <p>I am a passionate Information Technology student at University of Punjab with a strong interest in Web Development and Artificial Intelligence. I love building clean, user-friendly applications that solve real-world problems.</p>
                 <p>Currently pursuing my degree in Information Technology, I am constantly learning new technologies and working on projects that challenge me to grow as a developer.</p>
                 <div class="contact-info">
+                    <!-- Email ab clickable hai -->
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
-                        <span>manahil3365@gmail.com</span>
+                        <a href="mailto:manahil3365@gmail.com">manahil3365@gmail.com</a>
                     </div>
+                    <!-- Phone ab clickable hai -->
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
-                        <span>03279016230</span>
+                        <a href="tel:03279016230">03279016230</a>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
@@ -667,12 +735,15 @@
                 </div>
             </div>
             <div class="about-text reveal">
-                <h3 style="margin-bottom: 20px;">Education</h3>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <h4>BS Information Technology</h4>
-                        <p class="date">2023 - 2027</p>
-                        <p>University of Punjab</p>
+                <!-- Education Heading ab sahi aligned hai -->
+                <h3 class="education-heading">Education</h3>
+                <div class="timeline" style="padding-left: 0; margin-top: 20px;">
+                    <div class="timeline" style="padding-left: 40px; margin: 0;">
+                        <div class="timeline-item">
+                            <h4>BS Information Technology</h4>
+                            <p class="date">2023 - 2027</p>
+                            <p>University of Punjab</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -742,7 +813,11 @@
             <!-- Project 1: SkillSync-AI -->
             <div class="project-card reveal">
                 <div class="project-image">
-    <img src="C:\Users\Crown Tech\OneDrive\Desktop\skillsync.png" alt="SkillSync-AI">
+    <img src="C:\Users\Crown Tech\OneDrive\Desktop\Screenshot_1789132961.png" alt="SkillSync-AI">
+    <img src="C:\Users\Crown Tech\OneDrive\Desktop\Screenshot_1789133110.png" alt="SkillSync-AI">
+    <img src="C:\Users\Crown Tech\OneDrive\Desktop\Screenshot_1789133129.png" alt="SkillSync-AI">
+     <img src="C:\Users\Crown Tech\OneDrive\Desktop\Screenshot_1789133139.png" alt="SkillSync-AI">
+     <img src="C:\Users\Crown Tech\OneDrive\Desktop\Screenshot_1789133201.png" alt="SkillSync-AI">
 </div>
                 <div class="project-info">
                     <h3>SkillSync-AI</h3>
@@ -759,12 +834,13 @@
             <!-- Project 2: Responsive Static Website -->
             <div class="project-card reveal">
                <div class="project-image">
-    <img src="C:\Users\Crown Tech\OneDrive\Desktop\res static website.png" alt="Responsive Website">
+    <img src="C:\Users\Crown Tech\OneDrive\画像\rsw.png" alt="Responsive Website">
+     <img src="C:\Users\Crown Tech\OneDrive\画像\rsw2.avif" alt="Responsive Website">
 </div>
                 <div class="project-info">
                     <h3>Responsive Static Website</h3>
                     <span class="project-timeline">📅 2025 FG Post Graduate College</span>
-                    <p>Designed and developed a fully responsive multi-page static website using HTML5 and CSS3. The project focused on clean UI design, proper layout structuring, and mobile-friendly responsiveness. It helped in building a strong foundation in front-end web development.</p>
+                    <p>Designed and developed a fully responsive multi-page static website using HTML5 and CSS3. The project focused on clean UI design, proper layout structuring, and mobile-friendly responsiveness.</p>
                     <div class="project-tags">
                         <span>HTML</span>
                         <span>CSS</span>
@@ -798,7 +874,6 @@
 
     <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // Scroll Reveal Animation
         const revealElements = document.querySelectorAll('.reveal');
 
         const revealOnScroll = () => {
@@ -818,7 +893,6 @@
         window.addEventListener('scroll', revealOnScroll);
         window.addEventListener('load', revealOnScroll);
 
-        // Smooth Scroll for Navigation Links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
